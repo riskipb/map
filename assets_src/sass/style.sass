@@ -1,0 +1,933 @@
+$c_red: #fd130c
+
+html
+  width: 100%
+  height: 100%
+
+body
+  width: 100%
+  height: 100%
+
+#map
+  width: 100%
+  height: 100%
+  background-color: #f7f7f7
+
+#map_point
+  width: 100%
+  height: 100%
+  background-color: #f7f7f7
+
+  &.to_top
+    position: fixed
+    z-index: 9999
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+
+#map_point_btn
+  position: fixed
+  display: none
+  z-index: 9999
+  text-align: center
+  left: 0
+  right: 0
+  bottom: 50px
+
+  &.to_top
+    display: block
+
+.hide
+  display: none !important
+
+#tools
+  position: absolute
+  width: 100%
+  z-index: 100
+
+.tools
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  z-index: 100
+  background-color: white
+  //box-shadow: 0 0 10px #303030
+
+  .tools_wrap
+    position: relative
+
+    .tools_list
+      position: relative
+      padding: 0
+      margin: 0
+
+      &:after
+        content: ""
+        display: block
+        clear: both
+
+    .tools_list_item
+      position: relative
+      display: block
+      float: left
+      box-sizing: border-box
+      padding: 5px
+
+      a
+        position: relative
+        cursor: pointer
+        user-select: none
+
+        &.mark_1
+          background-color: #56db40
+          color: white
+          font-weight: bold
+
+        &.mark_2
+          background-color: yellow
+          color: white
+          font-weight: bold
+
+        &.mark_3
+          background-color: #ed4543
+          color: white
+          font-weight: bold
+
+        //&.mark_4
+          //background-color: #303030
+          //color: white
+          //font-weight: bold
+
+        &.mark_companies
+          background-color: steelblue
+          color: white
+
+        &.mark_dogovors
+          background-color: #999999
+          color: white
+
+        &:active
+          &.mark_1
+            background-color: darken(#56db40, 10%)
+
+          &.mark_2
+            background-color: darken(yellow, 15%)
+
+          &.mark_3
+            background-color: darken(#ed4543, 10%)
+
+          &.mark_4
+            background-color: darken(#303030, 10%)
+
+      .tools_list_item__input_full
+        position: relative
+        padding: 0 8px
+        display: inline-block
+        outline: none
+        border-radius: 2px
+        border-width: 1px 1px 1px 1px
+        border-style: solid
+        border-color: #c0c0c0
+        min-width: 300px
+        color: #707070
+        box-shadow: 0px 0px 3px #c0c0c0 inset
+        margin: 5px 0
+        height: 30.6px
+        line-height: 30.6px
+        vertical-align: middle
+
+        + .mui-dropdown
+          display: inline-block
+          position: absolute
+          margin-top: -4px
+
+          &:after
+            content: ""
+            display: block
+            clear: both
+
+          .mui-dropdown__menu
+            border-radius: 0
+            min-width: 200px
+            max-width: 500px
+
+
+.tools_toggle_btn
+  position: absolute
+  left: 5px
+  top: 5px
+
+.filter_toggle_btn
+  position: absolute
+  right: 25px
+  top: 70px
+  border: 1px solid #666666
+  color: #666666
+  font-size: 2rem
+  padding: 8px 10px
+  margin: 0
+  transition: all 0.2s ease 0s
+  text-decoration: none
+  background-color: white
+
+  &:hover
+    background-color: #cc0000
+    border-color: #cc0000
+    color: white
+
+.preloader_wrap
+  position: fixed
+  background-color: white
+  z-index: 100
+  left: 0
+  right: 0
+  top: 0
+  bottom: 0
+
+  .preloader
+    position: relative
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    height: 100%
+    background-color: lightyellow
+
+    .word1
+      color: steelblue
+      text-shadow: 0 0 4px steelblue
+
+    .line
+      color: steelblue
+
+    .word2
+      color: green
+      text-shadow: 0 0 4px green
+
+.spinner
+  width: 40px
+  height: 40px
+  position: relative
+  margin: 50px auto
+
+.double-bounce1
+  width: 100%
+  height: 100%
+  border-radius: 50%
+  background-color: green
+  opacity: 0.6
+  position: absolute
+  top: 0
+  left: 0
+  animation: sk-bounce 2.0s infinite ease-in-out
+
+.double-bounce2
+  width: 100%
+  height: 100%
+  border-radius: 60%
+  background-color: green
+  opacity: 0.6
+  position: absolute
+  top: 0
+  left: 0
+  animation: sk-bounce 2.0s infinite ease-in-out
+  animation-delay: -1.0s
+
+
+.modal_window
+  position: fixed
+  left: 20px
+  top: 20px
+  bottom: 20px
+  width: 400px
+  background-color: white
+  padding: 0
+  margin: 0
+  z-index: 100
+  box-shadow: 0 0 16px #303030
+  overflow-y: auto
+
+  .modal_window_wrap
+    position: relative
+    padding: 20px
+
+    .head
+      position: relative
+      border-bottom: 1px solid #303030
+      margin-bottom: 20px
+
+    .body
+      position: relative
+
+    .footer
+      position: relative
+      display: flex
+
+      .mui-btn
+        width: 50%
+
+    .close_btn
+      position: absolute
+      right: 10px
+      padding: 5px
+      font-size: 1.1rem
+
+.modal_info
+  position: fixed
+  left: 20px
+  top: 20px
+  bottom: 20px
+  right: 20px
+  background-color: white
+  padding: 0
+  margin: 0
+  z-index: 100
+  box-shadow: 0 0 16px #303030
+  overflow-y: auto
+
+  .modal_info_wrap
+    position: relative
+    padding: 20px
+
+    .head
+      position: relative
+      //border-bottom: 1px solid #303030
+      margin-bottom: 20px
+      min-height: 3rem
+
+      a
+        position: absolute
+        cursor: pointer
+        font-size: 2rem
+        right: 0
+        top: 0
+        color: #707070
+
+        &:hover
+          color: #cc0000
+          text-shadow: 0 0 6px #cc0000
+
+    .body
+      position: relative
+
+    .footer
+      position: relative
+      display: flex
+
+
+[class="state_label 1"]
+  position: relative
+  background-color: #56db40
+  padding: 5px 10px
+
+[class="state_label 2"]
+  position: relative
+  background-color: yellow
+  padding: 5px 10px
+
+[class="state_label 3"]
+  position: relative
+  background-color: #ed4543
+  padding: 5px 10px
+
+.mui-dropdown__menu
+  &.mui-dropdown__menu
+    li
+      a
+        cursor: pointer
+
+  &.mui-dropdown__menu_style1
+    max-height: 300px
+    overflow-y: auto
+    max-width: 300px
+    overflow-x: hidden
+
+.hide
+  display: none !important
+
+.mui-form--speedsearch
+  padding: 2px 5px
+
+
+.auth_wrap
+  position: relative
+  display: flex
+  align-items: center
+  justify-content: center
+
+  .auth
+    position: relative
+
+    form
+      box-shadow: 0 5px 50px #a0a0a0
+      padding: 30px
+      border-radius: 2px
+      display: block
+      background-color: white
+
+      legend
+        text-align: center
+
+      button
+        width: 100%
+
+      .login_in_logout
+        font-size: 1.6rem
+        text-align: center
+        font-weight: bold
+        color: steelblue
+
+
+.head
+  position: relative
+
+  .head_wrap
+    position: relative
+    display: flex
+    flex-direction: row
+    flex-wrap: nowrap
+    justify-content: flex-start
+    align-items: flex-start
+    align-content: flex-start
+    border-bottom: 1px solid #cc0000
+    border-width: 0 0 1px 0
+
+    .head_left
+      position: relative
+      width: calc(100% - 100px)
+      display: flex
+      flex-direction: column
+      padding: 10px
+      user-select: none
+
+      a
+        display: table
+        text-decoration: none
+
+      .lead
+        position: relative
+        text-transform: uppercase
+        font-size: 2rem
+        font-weight: bold
+        color: #cc0000
+
+        .lead_text
+          position: relative
+
+      .text
+        position: relative
+        text-transform: uppercase
+
+    .head_right
+      position: relative
+      width: 100px
+      height: 100px
+      display: flex
+      justify-content: center
+      align-items: center
+
+      .menu
+        display: block
+        position: relative
+        color: #cc0000
+        border: 2px solid #cc0000
+        padding: 10px
+        transition: all 0.1s ease 0s
+        text-decoration: none
+
+        .fa
+          display: block
+
+        &:hover
+          background-color: #cc0000
+          color: white
+
+        &:active
+          background-color: #aa0000
+          color: white
+
+.menu
+  position: relative
+  border: 1px solid #cc0000
+  border-width: 0px 0 1px 0
+
+  .menu_wrap
+    position: relative
+
+    ul
+      position: relative
+      padding: 0
+      margin: 0
+      display: flex
+      flex-direction: row
+
+      li
+        position: relative
+        padding: 0
+        margin: 0
+        list-style-type: none
+        width: 33.33%
+        text-align: center
+
+        a
+          position: relative
+          display: block
+          color: #cc0000
+          background-color: white
+          padding: 15px
+          text-transform: uppercase
+
+          &:hover
+            text-decoration: underline
+
+          &:active
+            color: white
+            background-color: darken(#cc0000, 5%)
+            text-decoration: none
+
+          &.active
+            color: white
+            background-color: #cc0000
+            text-decoration: none
+
+
+.menu_sidebar
+  position: fixed
+  right: 0
+  top: 0
+  bottom: 0
+  width: 300px
+  background-color: #330000
+  z-index: 500
+  transition: all 0.3s ease 0s
+
+  &.menu_sidebar__hidden
+    right: -300px
+
+  .menu_sidebar_wrap
+    position: relative
+    padding: 20px
+
+    .close_btn
+      position: relative
+      display: block
+      padding: 10px
+      text-align: center
+      font-size: 2rem
+      color: white
+      transition: all 0.1s ease 0s
+
+      &:hover
+        color: #330000
+        background-color: white
+
+    .line
+      position: relative
+      color: #a0a0a0
+      text-align: right
+
+    .divide
+      position: relative
+      background-color: #505050
+
+    ul
+      position: relative
+      padding: 0
+      margin: 0
+
+      li
+        position: relative
+        list-style-type: none
+
+        a
+          position: relative
+          color: white
+          font-size: 1.5rem
+          padding: 10px
+          display: block
+          font-weight: bold
+
+          &:hover
+            position: relative
+
+          &:active
+            position: relative
+
+section
+  position: relative
+
+  &.page
+    position: relative
+    padding-bottom: 200px
+
+    h1.title
+      text-transform: capitalize
+      text-align: center
+
+  &.footer
+    position: relative
+    padding: 50px 0 50px 0
+    border: 1px solid #cc0000
+    border-width: 1px 0 0 0
+    background-color: white
+
+    .copyright
+      position: relative
+      text-align: center
+      padding-top: 20px
+
+      a
+        color: #cc0000
+        text-decoration-color: #cc0000
+
+    .footer_menu
+      position: relative
+      padding: 0
+      margin: 0
+
+      li
+        position: relative
+        list-style-type: none
+        display: inline-block
+
+        a
+          position: relative
+          display: block
+          color: #cc0000
+          padding: 0 20px 20px 0
+          text-decoration-color: #cc0000
+
+
+.filters
+  position: relative
+
+  .filters_wrap
+    position: relative
+
+.mui-panel
+  &.mui-panel--primary
+    border: 2px solid #2196f3
+
+  &.mui-panel--default
+    border: 1px solid #707070
+
+  &.mui-panel--danger
+    border: 1px solid #f32196
+
+.mui-panel--head
+  position: relative
+  display: block
+  margin: -15px -15px 10px -15px
+  padding: 10px
+  font-size: 1.1em
+  border: 1px solid #707070
+  border-width: 0 0 1px 0
+  color: #303030
+  font-weight: bold
+  background-color: #dfdfdf
+
+  &.mui-panel--head-primary
+    background-color: #2196f3
+    color: white
+
+
+.result
+  position: relative
+
+  .result_wrap
+    position: relative
+
+    .result_list
+      position: relative
+      padding: 0
+      margin: 0
+
+      .result_item
+        position: relative
+        list-style-type: none
+        overflow: hidden
+        white-space: nowrap
+
+        a
+          display: inline-block
+          padding: 10px 14px
+          text-decoration: none
+          position: relative
+
+          &:hover
+            background-color: #cc0000
+            color: white
+
+          i
+            user-select: none
+
+        &:hover
+          background-color: #f5f5f5
+
+.light
+  color: #a0a0a0
+
+.bold
+  font-weight: bold
+
+.mui-btn--black
+  color: #303030
+  background-color: white
+
+  &:hover
+    color: white
+    background-color: #303030
+
+.mui-btn--red
+  color: #303030
+  background-color: white
+
+  &:hover
+    color: white
+    background-color: $c_red
+
+.mui-btn--group
+  position: relative
+
+  .mui-btn
+    position: relative
+
+    &.mark_1
+      color: white
+      background-color: darken(#56db40, 10%)
+
+    &.mark_2
+      color: white
+      background-color: darken(yellow, 15%)
+
+    &.mark_3
+      color: white
+      background-color: darken(#ed4543, 10%)
+
+    &.mark_dogovors
+      color: white
+      background-color: #999999
+
+.form_for_edit
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  background-color: rgba(255, 255, 255, 0.5)
+
+  .form_for_edit_wrap
+    width: auto
+    height: calc(100% - 120px)
+    margin: 30px
+    box-shadow: 0 0 10px #303030
+    overflow-y: auto
+    padding: 30px
+    background-color: white
+
+    .head
+      position: relative
+
+    .body
+      position: relative
+      display: flex
+      flex-direction: row
+      flex-wrap: nowrap
+      justify-content: flex-start
+      align-items: flex-start
+      align-content: flex-start
+
+      .body_left
+        position: relative
+        width: 50%
+        padding: 0 10px 0 0
+
+        .textarea_wrap
+          position: relative
+          display: flex
+
+        textarea
+          margin: 0px
+          border: 1px solid #a0a0a0
+          border-radius: 1px
+          padding: 10px
+          width: 100%
+          min-height: 300px
+          height: auto
+          overflow-x: auto
+          overflow-y: auto
+          font-family: monospace
+          white-space: nowrap
+          resize: none
+
+      .body_right
+        position: relative
+        width: 50%
+
+    .errors
+      position: relative
+
+      .errors_item
+        position: relative
+
+    .messages
+      position: relative
+
+      .messages_item
+        position: relative
+
+    .footer
+      position: relative
+
+
+.fa-small
+  font-size: 0.75em
+
+
+.mui-btn--small2
+  height: 26.6px
+  line-height: 26.6px
+  padding: 0 16px
+  font-size: 13px
+
+.search_input
+  width: calc(100% - 28px)
+  padding: 5px
+
+
+.textarea_style
+  margin: 0px !important
+  border: 1px solid #a0a0a0 !important
+  border-radius: 1px !important
+  padding: 10px !important
+  width: 100% !important
+  min-height: 300px !important
+  height: auto !important
+  overflow-x: auto !important
+  overflow-y: auto !important
+  font-family: monospace !important
+  white-space: nowrap !important
+  resize: vertical !important
+
+.textarea_style2
+  margin: 0px !important
+  border: 1px solid #a0a0a0 !important
+  border-radius: 1px !important
+  padding: 10px !important
+  width: 100% !important
+  min-height: 150px !important
+  height: auto !important
+  overflow-x: auto !important
+  overflow-y: auto !important
+  font-family: monospace !important
+  white-space: nowrap !important
+  resize: vertical !important
+
+.paginations
+  position: relative
+
+  .paginations_wrap
+    position: relative
+    padding: 0
+    margin: 0
+    list-style-type: none
+
+    .paginations_item
+      position: relative
+      display: inline-block
+      padding: 0px
+
+.mui-btn--pagination
+  position: relative
+  padding: 0px 10px
+
+.darkorchid
+  color: darkorchid
+
+.darkseagreen
+  color: darkseagreen
+
+.green
+  color: green
+
+.gray
+  color: gray
+
+.red
+  color: red
+
+
+.profile
+  position: absolute
+  z-index: 1
+
+  .profile_params_list
+    position: relative
+    margin: 0
+    padding: 0
+    list-style-type: none
+
+    li
+      position: relative
+      display: inline-block
+      padding-right: 20px
+
+      a
+        position: relative
+        display: block
+        cursor: pointer
+
+        span
+          color: gray
+          text-decoration: none
+
+.mui-tabs__bar
+  li
+    a
+      cursor: pointer
+
+
+.marker
+  position: relative
+  display: block
+
+  .marker_state_1
+    color: #56db40
+
+  .marker_state_2
+    color: yellow
+
+  .marker_state_3
+    color: #ed4543
+
+  .marker_true
+    color: green
+    background-color: green
+
+  .marker_false
+    color: red
+    background-color: red
+
+
+.marker_in_table
+  .marker_state_1
+    color: #56db40
+
+  .marker_state_2
+    color: yellow
+
+  .marker_state_3
+    color: #ed4543
+
+.margin-0
+  margin: 0 !important
+
+
+@keyframes sk-bounce
+  0%, 100%
+    transform: scale(0)
+
+  50%
+    transform: scale(1)

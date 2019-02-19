@@ -1,0 +1,12 @@
+{
+    "name": "riskipb/ajax",
+    "description": "request data from CouchDB",
+    "type": "library",
+    "require": {
+        "erusev/parsedown": "1.7.1",
+        "fenom/fenom": "2.11.0",
+        "mikecao/flight": "1.3.7",
+        "morris/lessql": "0.3.5",
+        "riverside/head-couch": "0.1.1"
+    }
+}
